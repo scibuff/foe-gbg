@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+        }
+        table td {
+            padding-right: 10px;
+        }
+        table th td,
+        table tr td {
+            text-align: center;
+        }
+        table tr td.player-name {
+            text-align: left;
+        }
+
+        .info {
+            background-color: #d9edf7;
+        }
+        .delta-pos {
+            background-color: #99cc66;
+            font-weight: bold;
+        }
+        .success {
+            background-color: #c3e6cb;
+            font-weight: bold;
+        }
+        .warning {
+            background-color: #ffeeba;
+            font-weight: bold;
+        }
+        .locked {
+            color: #a94442;
+        }
+        .layout-column {
+            border: 1px solid #555;
+            vertical-align: top;
+            width: 50%;
+        }
+
+        #data p {
+            padding: 5px 10px;
+            margin: 0;
+        }
+
+        #info p {
+            padding: 5px 0 0 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<!--
+https://github.com/vladikoff/grunt-devtools/blob/master/extension/src/templates/panel-tpl.html
+https://github.com/vladikoff/grunt-devtools/blob/master/extension/src/js/devtools.js
+https://github.com/vladikoff/grunt-devtools
+-->
+
+<section id="data">
+    <table id="layout">
+        <tbody>
+        <tr>
+            <td class="layout-column" colspan="2">
+                <p>
+                    <button id="snapshot-button-take-snapshot" type="button" value="Take">Take Snapshot</button>
+                    <button id="snapshot-button-delete-snapshot" type="button" value="Take">Delete Snapshot</button>
+                </p>
+                <p><small>Last Update: <span id="for-gbg-last-update">no data</span></small></p>
+            </td>
+        </tr>
+        <tr>
+            <td id="leaderboard-1-40" class="layout-column">
+                <table id="players-1-40">
+                    <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player</th>
+                        <th>Score</th>
+                        <th>Negs</th>
+                        <th>Fights</th>
+                        <th>&Delta; Negs</th>
+                        <th>&Delta; Fights</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </td>
+            <td id="leaderboard-41-80" class="layout-column">
+                <table id="players-41-80">
+                    <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player</th>
+                        <th>Score</th>
+                        <th>Negs</th>
+                        <th>Fights</th>
+                        <th>&Delta; Negs</th>
+                        <th>&Delta; Fights</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+<section id="info">
+    <p>
+<!--
+        <img src="foe-gbg-16px.png" alt="FoE GBg" /><br />
+-->
+        <small>FoE GBg <span id="foe-gbg-version"></span></small>
+    </p>
+<!--
+    <p>
+        <button type="button" id="foe-debug">Debug</button>
+    </p>
+-->
+</section>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="panel.js"></script>
+</body>
+</html>
