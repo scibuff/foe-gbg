@@ -48,6 +48,17 @@
             padding: 5px 0 0 0;
             margin: 0;
         }
+
+        #nav a {
+            cursor:pointer;
+        }
+
+        td.resource-name {
+            text-align: left;
+        }
+        td.resource-value {
+            text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -57,56 +68,96 @@ https://github.com/vladikoff/grunt-devtools/blob/master/extension/src/js/devtool
 https://github.com/vladikoff/grunt-devtools
 -->
 
-<section id="data">
-    <table id="layout">
+
+<sectior id="nav">
+    <table class="layout">
         <tbody>
         <tr>
-            <td class="layout-column" colspan="2">
-                <p>
-                    <button id="snapshot-button-take-snapshot" type="button" value="Take">Take Snapshot</button>
-                    <button id="snapshot-button-delete-snapshot" type="button" value="Take">Delete Snapshot</button>
-                </p>
-                <p><small>Last Update: <span id="for-gbg-last-update">no data</span></small></p>
-            </td>
-        </tr>
-        <tr>
-            <td id="leaderboard-1-40" class="layout-column">
-                <table id="players-1-40">
-                    <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Player</th>
-                        <th>Score</th>
-                        <th>Negs</th>
-                        <th>Fights</th>
-                        <th>&Delta; Negs</th>
-                        <th>&Delta; Fights</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </td>
-            <td id="leaderboard-41-80" class="layout-column">
-                <table id="players-41-80">
-                    <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Player</th>
-                        <th>Score</th>
-                        <th>Negs</th>
-                        <th>Fights</th>
-                        <th>&Delta; Negs</th>
-                        <th>&Delta; Fights</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </td>
+            <td class="layout-column"><span><a data="gbg-leaderboard">Leaderboard</a></span></td>
+            <td class="layout-column"><span><a data="treasury">Treasury</a></span></td>
         </tr>
         </tbody>
     </table>
+</sectior>
+<section id="data">
+
+    <div class="data-container" id="gbg-leaderboard">
+
+        <table class="layout">
+            <tbody>
+            <tr>
+                <td class="layout-column" colspan="2">
+                    <p>
+                        <button id="snapshot-button-take-snapshot" type="button" value="Take">Take Snapshot</button>
+                        <button id="snapshot-button-delete-snapshot" type="button" value="Take">Delete Snapshot</button>
+                    </p>
+                    <p><small>Last Update: <span id="for-gbg-last-update">no data</span></small></p>
+                </td>
+            </tr>
+            <tr>
+                <td id="leaderboard-1-40" class="layout-column">
+                    <table id="players-1-40">
+                        <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Score</th>
+                            <th>Negs</th>
+                            <th>Fights</th>
+                            <th>&Delta; Negs</th>
+                            <th>&Delta; Fights</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </td>
+                <td id="leaderboard-41-80" class="layout-column">
+                    <table id="players-41-80">
+                        <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Score</th>
+                            <th>Negs</th>
+                            <th>Fights</th>
+                            <th>&Delta; Negs</th>
+                            <th>&Delta; Fights</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="data-container" id="treasury">
+
+        <table class="layout">
+            <tbody>
+            <tr>
+                <td class="layout-column">
+                    <table id="treasury-left">
+                        <tbody>
+                        </tbody>
+                    </table>
+                </td>
+                <td class="layout-column">
+                    <table id="treasury-right">
+                        <tbody>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
 </section>
 <section id="info">
     <p>
