@@ -374,43 +374,55 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
 
             var size = Object.keys(treasury).length;
 
+            var half = Math.ceil( size / 2 );
             for (var i = 1; i <= size; i++ ) {
                 var era = treasury[i];
                 if ( era ) {
-                    for ( var j = 1; j <= 5; j++ ) {
-                        if ( i % 2 == 1 ) {
-                            lefts.push( era[j] );
-                        }
-                        else {
-                            rights.push( era[j] );
-                        }
+                    if ( i <= half ) {
+                        lefts.push( era );
+                    }
+                    else {
+                        rights.push( era );
                     }
                 }
             }
 
             // print left
             for ( var i = 0; i < lefts.length; i++ ){
-                tmp.aux.printTreasuryRow( bodyLeft, lefts[i] );
-
+                tmp.aux.printTreasuryEra( bodyLeft, lefts[i] );
             }
             // print right
             for ( var i = 0; i < rights.length; i++ ){
-                tmp.aux.printTreasuryRow( bodyRight, rights[i] );
-
+                tmp.aux.printTreasuryEra( bodyRight, rights[i] );
             }
         };
 
+        tmp.aux.printTreasuryEra = function(parent,era){
+
+            var total = 0;
+            for ( var j = 1; j <= 5; j++ ){
+                var item = era[j];
+                total += item.value;
+                tmp.aux.printTreasuryRow(parent,item);
+            }
+
+            var html = '<tr>'
+                + '<td class="resource-name">Total: </td>'
+                + '<td class="resource-value">' + tmp.aux.formatTresuryValue(total ) + '</td>'
+                + '</tr><tr><td colspan="2" class="empty-row">&nbsp;</td></tr>';
+            var tr = $(html);
+            parent.append(tr);
+
+        }
         tmp.aux.printTreasuryRow = function(parent,item){
 
             var html = '<tr>'
-                + '<td class="resource-icon">&nbsp;</td>'
                 + '<td class="resource-name">' + item.name + '</td>'
                 + '<td class="resource-value">' + tmp.aux.formatTresuryValue( item.value ) + '</td>'
                 + '</tr>';
             var tr = $( html );
 
             parent.append(tr);
-
         };
         tmp.aux.formatTresuryValue = function(n){
             return n.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
@@ -501,6 +513,9 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
             return tmp.treasury;
         }
 
+        tmp.good_eras = {
+
+        }
         tmp.goods = {
             guild_expedition_point: 0,
             medals: 0,
