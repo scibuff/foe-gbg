@@ -195,6 +195,10 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
                     left: 'players-1-40',
                     right: 'players-41-80'
                 },
+                soh : {
+                    left: 'soh-left',
+                    right: 'soh-right'
+                },
                 treasury : {
                     left: 'treasury-left',
                     right: 'treasury-right'
@@ -234,6 +238,12 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
                         tmp.processTreasury( o.responseData );
                     }
                 }
+                if ( o && o.requestClass && o.requestClass == "OtherPlayerService" ){
+
+                    if ( o.requestMethod == "visitPlayer" ){
+                        tmp.processPlayerData( o.responseData );
+                    }
+                }
                 if ( o && o.requestClass && o.requestClass == "GuildBattlegroundStateService" ) {
 
                     if ( o.requestMethod == "getState" ){
@@ -248,6 +258,16 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
                 }
             }
         };
+
+        tmp.processPlayerData = function ( data ){
+
+            if ( !data ){
+                console.log('no resource data');
+                return;
+            }
+            foe.sohs.setData( data );
+            tmp.printSoH();
+        }
 
         tmp.processTreasury = function ( data ){
 
@@ -297,6 +317,60 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
         tmp.aux.getIntValue = function(o,key){
             if ( o && o[key] ){ return o[key]; }
             return 0;
+        }
+
+        tmp.printSoH = function(){
+
+            var bodyLeft = $('#' + tmp.options.html.ids.soh.left + ' > tbody' );
+            var bodyRight = $('#' + tmp.options.html.ids.soh.right + ' > tbody' );
+
+            bodyLeft.empty();
+            bodyRight.empty();
+
+            var players = foe.sohs.getData();
+
+            var size = Object.keys(players).length;
+
+            var leftMax = Math.min( 40, size );
+            var rightMax = Math.max( 40, size );
+
+            var rows = [];
+            for ( var id in players ){
+                var player = players[id];
+                rows[player.rank] = player;
+            }
+
+            // print left
+            for ( var i = 0; i < leftMax; i++ ){
+                var player = rows[i];
+                tmp.aux.printSoHRow( bodyLeft, player );
+
+            }
+            // print right
+            if ( size > 40 ) {
+                for ( var i = 40; i < rightMax; i++ ){
+                    var player = rows[i];
+                    tmp.aux.printSoHRow( bodyRight, player );
+                }
+            }
+
+        }
+
+        tmp.aux.printSoHRow = function ( parent, player ) {
+
+            var html = '<tr>'
+                + '<td>' + player.rank + '</td>'
+                + '<td class="player-name">' + player.name + '</td>'
+                + '<td>' + player.levels[0] + '</td>'
+                + '<td>' + player.levels[1] + '</td>'
+                + '<td>' + player.levels[2] + '</td>'
+                + '<td>' + player.levels[3] + '</td>'
+                + '<td>' + player.levels[4] + '</td>'
+                + '</tr>';
+            var tr = $( html );
+
+            parent.append(tr);
+
         }
 
         tmp.printLeaderboard = function(){
@@ -479,6 +553,140 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
         return pub;
     }();
 
+    foe.guild = function(){
+        var tmp = {};
+        tmp.players = [
+            { id: "2101362", name: "Malc999"},
+            { id: "4554866", name: "jenkoroid"},
+            { id: "4523216", name: "mopasswiniopas"},
+            { id: "3456739", name: "Twodon"},
+            { id: "2251713", name: "ArmAgeddon1986"},
+            { id: "4854322", name: "Ykra82"},
+            { id: "4242068", name: "BuBii"},
+            { id: "2067179", name: "GioGoBE"},
+            { id: "4522851", name: "CodyBeartheGreat"},
+            { id: "1634025", name: "MyLittleLady"},
+            { id: "1727607", name: "O1af"},
+            { id: "5770103", name: "Winstn"},
+            { id: "2668311", name: "dabylover"},
+            { id: "3435319", name: "Portodragao"},
+            { id: "5288551", name: "Lupul cel rau"},
+            { id: "3437627", name: "williamandaman"},
+            { id: "2228072", name: "King Kong the 2nd"},
+            { id: "7380673", name: "Cyrus the Red King"},
+            { id: "1940518", name: "wphillips1969"},
+            { id: "4273370", name: "jocokitan"},
+            { id: "6153011", name: "Bandzhius"},
+            { id: "1386881", name: "sir p of scoles"},
+            { id: "4471913", name: "dick ryder"},
+            { id: "2638320", name: "trips"},
+            { id: "1530724", name: "King Donnie"},
+            { id: "529245",  name: "plugl"},
+            { id: "9717564", name: "Pericles the Warrior 552"},
+            { id: "6869907", name: "scibuff"},
+            { id: "3440035", name: "Red forever"},
+            { id: "4534957", name: "Viriatus The Stubborn"},
+            { id: "3448613", name: "The Gerbil"},
+            { id: "5250934", name: "Tomasz Wilczynski"},
+            { id: "7371009", name: "Archie the Awesome"},
+            { id: "5264800", name: "Pedro Marques"},
+            { id: "3443792", name: "ArturDix37"},
+            { id: "707600",  name: "nalinranawaka"},
+            { id: "7429131", name: "KOKOS76"},
+            { id: "3432275", name: "waldecal1"},
+            { id: "4855344", name: "VincentGregg"},
+            { id: "9815594", name: "KingXIII"},
+            { id: "6773439", name: "Charles the Saviour"},
+            { id: "5306764", name: "CRjonz"},
+            { id: "3167499", name: "ramon3141"},
+            { id: "7084358", name: "Il Penseroso"},
+            { id: "4455672", name: "Dr Mac"},
+            { id: "8533562", name: "ExCiT3R"},
+            { id: "4538742", name: "Sylvik Silverspear"},
+            { id: "4415427", name: "Dibble Oak"},
+            { id: "7141157", name: "Michael Knigth Lawgiver"},
+            { id: "5691007", name: "Casticus the Sly 271"},
+            { id: "6170110", name: "ROginia"},
+            { id: "9508418", name: "Trcz"},
+            { id: "2324976", name: "RockyFU"},
+            { id: "10227447", name: "Mad Max McGill"},
+            { id: "10656113", name: "Miss Megan"},
+            { id: "4517894", name: "Skittles The Terrible"},
+            { id: "2089363", name: "daveb57"},
+            { id: "6236886", name: "Aaron Dean"},
+            { id: "4241913", name: "barcardi"},
+            { id: "9832364", name: "TripSwe"},
+            { id: "8420992", name: "Odin Valhala"},
+            { id: "9676621", name: "patsygirl"},
+            { id: "9428118", name: "Garvisimo the Glorious"},
+            { id: "6822800", name: "Immortal Enemy"},
+            { id: "8136844", name: "Goluff"},
+            { id: "4561750", name: "BorisSF2"},
+            { id: "8613293", name: "king willyboy"},
+            { id: "10300883", name: "luisosmed"},
+            { id: "9239518", name: "Louis the Just 378"},
+            { id: "10494477", name: "Holydr4gon"},
+            { id: "10520763", name: "Ratibor Iron Fist"},
+            { id: "6293528", name: "Maya Myoho"},
+            { id: "9349175", name: "big eel"},
+            { id: "9578694", name: "Red9thebest"},
+            { id: "7292743", name: "pashow"},
+            { id: "10104023", name: "Brutus999"},
+            { id: "7995330", name: "Crystal Sea Star"}
+        ];
+
+        var pub = {};
+
+        pub.players = function(){
+            return tmp.players;
+        };
+
+        return pub;
+    }();
+
+    foe.sohs = function(){
+        var tmp = {};
+        tmp.data = {};
+        var pub = {};
+
+        tmp.setPlayerLevels = function( id, levels ){
+            if ( tmp.data[ id ] ){
+                tmp.data[id].levels = levels;
+            }
+        }
+
+        pub.setData = function( data ){
+            var entities = data.city_map.entities;
+            var levels = [0,0,0,0,0];
+            for ( var i = 0; i < entities.length; i++ ){
+                var entity = entities[i];
+                if ( entity.cityentity_id == 'R_MultiAge_Battlegrounds1a' ){ levels[4] = levels[4] + 1; }
+                if ( entity.cityentity_id == 'R_MultiAge_Battlegrounds1b' ){ levels[3] = levels[3] + 1; }
+                if ( entity.cityentity_id == 'R_MultiAge_Battlegrounds1c' ){ levels[2] = levels[2] + 1; }
+                if ( entity.cityentity_id == 'R_MultiAge_Battlegrounds1d' ){ levels[1] = levels[1] + 1; }
+                if ( entity.cityentity_id == 'R_MultiAge_Battlegrounds1e' ){ levels[0] = levels[0] + 1; }
+            }
+            var id = data.other_player.player_id;
+            tmp.setPlayerLevels( id, levels );
+        }
+
+        pub.getData = function(){ return tmp.data; }
+
+        pub.initialize = function(){
+            var players = foe.guild.players();
+            for ( var i = 0; i < players.length; i++ ){
+                var player = players[i];
+                tmp.data[ player.id ] = {
+                    levels: [0,0,0,0,0],
+                    name: player.name,
+                    rank: i
+                }
+            }
+        }
+
+        return pub;
+    }();
+
     foe.treasury = function(){
         var tmp = {};
         tmp.treasury = {};
@@ -521,7 +729,7 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
             medals: 0,
             guild_championship_trophy_gold: 0,
 
-            bronze: { era: 3, order: 1, name: 'Cooper'},
+            bronze: { era: 3, order: 1, name: 'Copper'},
             biotech_crops: { era: 17, order: 1, name: 'BioTech Crops'},
             asbestos: { era: 8, order: 1, name: 'Asbestos'},
             fusion_reactors: { era: 17, order: 2, name: 'Fusion Reactors'},
@@ -726,6 +934,7 @@ document.getElementById('foe-gbg-version').innerHTML = 'v' + manifest.version;
 
 $(document).ready(function() {
     foe.ui.initialize();
+    foe.sohs.initialize();
     foe.data.initialize(function(){
         foe.net.initialize();
     });
