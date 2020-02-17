@@ -359,7 +359,7 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
         tmp.aux.printSoHRow = function ( parent, player ) {
 
             var html = '<tr>'
-                + '<td>' + player.rank + '</td>'
+                + '<td>' + ( player.rank + 1 ) + '</td>'
                 + '<td class="player-name">' + player.name + '</td>'
                 + '<td>' + player.levels[0] + '</td>'
                 + '<td>' + player.levels[1] + '</td>'
