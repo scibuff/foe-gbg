@@ -602,7 +602,7 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
             { id: "7084358", name: "Il Penseroso"},
             { id: "4455672", name: "Dr Mac"},
             { id: "8533562", name: "ExCiT3R"},
-            { id: "4538742", name: "Sylvik Silverspear"},
+            // { id: "4538742", name: "Sylvik Silverspear"},
             { id: "4415427", name: "Dibble Oak"},
             { id: "7141157", name: "Michael Knigth Lawgiver"},
             { id: "5691007", name: "Casticus the Sly 271"},
@@ -630,6 +630,7 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
             { id: "6293528", name: "Maya Myoho"},
             { id: "9349175", name: "big eel"},
             { id: "9578694", name: "Red9thebest"},
+            { id: "2925329", name: "SO7IW"},
             { id: "7292743", name: "pashow"},
             { id: "10104023", name: "Brutus999"},
             { id: "7995330", name: "Crystal Sea Star"}
