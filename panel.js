@@ -556,7 +556,7 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
     foe.guild = function(){
         var tmp = {};
         tmp.players = [
-            { id: "2101362", name: "Malc999"},
+            // { id: "2101362", name: "Malc999"},
             { id: "4554866", name: "jenkoroid"},
             { id: "4523216", name: "mopasswiniopas"},
             { id: "3456739", name: "Twodon"},
@@ -633,7 +633,9 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
             { id: "2925329", name: "SO7IW"},
             { id: "7292743", name: "pashow"},
             { id: "10104023", name: "Brutus999"},
-            { id: "7995330", name: "Crystal Sea Star"}
+            { id: "7995330", name: "Crystal Sea Star"},
+            // added after 2020-03-30
+            { id: "11008468", name: "Diogenes the Scourge 657"},
         ];
 
         var pub = {};
