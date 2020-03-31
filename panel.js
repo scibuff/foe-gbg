@@ -636,6 +636,7 @@ var foe = jQuery.createNamespace( 'com.scibuff.foe.gbg' );
             { id: "7995330", name: "Crystal Sea Star"},
             // added after 2020-03-30
             { id: "11008468", name: "Diogenes the Scourge 657"},
+            { id: "2298874", name: "Mills The Avenger"},
         ];
 
         var pub = {};
